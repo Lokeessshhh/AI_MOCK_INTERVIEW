@@ -37,6 +37,19 @@ async function apiFetch<T = any>(path: string, options: FetchOptions = {}): Prom
   return JSON.parse(text) as T;
 }
 
+export const healthAPI = {
+  check: async () => {
+    try {
+      const res = await fetch(`${API_URL.replace('/api', '')}/health/`, {
+        method: 'GET',
+      });
+      return res.ok;
+    } catch {
+      return false;
+    }
+  },
+};
+
 export const interviewAPI = {
   list: (clerkUserId: string) =>
     apiFetch('/interviews/interviews/', { params: { clerk_user_id: clerkUserId } }),

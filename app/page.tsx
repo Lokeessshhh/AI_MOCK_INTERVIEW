@@ -1,11 +1,13 @@
 'use client';
 
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
-import { Brain, ArrowRight, Star, Sparkles, MessageSquare, Zap, Globe2, ChevronRight, PlayCircle, ShieldCheck, BarChart3, Target, Users, Layout, FileUp, ClipboardCheck, History, PieChart, MousePointer2 } from "lucide-react";
+import { Brain, ArrowRight, Star, Sparkles, MessageSquare, Zap, Globe2, ChevronRight, PlayCircle, ShieldCheck, BarChart3, Target, Users, Layout, FileUp, ClipboardCheck, History, PieChart, MousePointer2, Activity } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useState, useEffect } from "react";
+import { healthAPI } from "@/lib/api";
 
 const FloatingElement = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
@@ -27,6 +29,14 @@ const FloatingElement = ({ children, delay = 0, className = "" }: { children: Re
 
 export default function Home() {
   const { isSignedIn } = useUser();
+  const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+
+  useEffect(() => {
+    // Wake up backend on page load
+    healthAPI.check().then((isOnline) => {
+      setBackendStatus(isOnline ? 'online' : 'offline');
+    });
+  }, []);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 15 },
@@ -57,6 +67,20 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Backend Status Indicator */}
+            <div className="flex items-center gap-2 text-[10px] font-medium">
+              <div className={`w-2 h-2 rounded-full ${
+                backendStatus === 'online' ? 'bg-emerald-500' :
+                backendStatus === 'offline' ? 'bg-rose-500' :
+                'bg-amber-500 animate-pulse'
+              }`} />
+              <span className="text-slate-400">
+                {backendStatus === 'online' ? 'Backend Online' :
+                 backendStatus === 'offline' ? 'Backend Offline' :
+                 'Waking...'}
+              </span>
+            </div>
+
             {!isSignedIn ? (
               <>
                 <SignInButton mode="modal">
