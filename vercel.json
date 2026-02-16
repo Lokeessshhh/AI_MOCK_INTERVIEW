@@ -1,8 +1,17 @@
 {
-  "builds": [
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "functions": {
+    "api/**/*.py": {
+      "runtime": "python3.9"
+    }
+  },
+  "rewrites": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
+      "source": "/api/:path*",
+      "destination": "/api/index.py"
     }
   ]
 }

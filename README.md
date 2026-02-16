@@ -1,528 +1,209 @@
-# 🎯 PrepAI - AI Mock Interview Platform
+# AI Mock Interview Platform
 
-<div align="center">
+A premium, AI-powered interview preparation platform with Django backend and Next.js frontend.
 
-![PrepAI Logo](https://img.shields.io/badge/PrepAI-AI%20Interview%20Prep-blue?style=for-the-badge&logo=brain)
-![Django](https://img.shields.io/badge/Django-5.0-green?style=for-the-badge&logo=django)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?style=for-the-badge&logo=typescript)
+## Features
 
-**Practice Perfect, Interview Confidently.** 🚀
+- **AI-Generated Questions**: Personalized interview questions based on your skills and target role
+- **Voice Recording**: Practice answers with voice recording capability
+- **Real-time Feedback**: Get AI-powered feedback on your responses
+- **Progress Tracking**: Monitor your improvement over time
+- **Premium UI**: Beautiful, modern interface with smooth animations
+- **Clerk Authentication**: Secure authentication with Clerk
 
-[Features](#-key-features) • [How It Works](#-how-it-works) • [Benefits](#-why-prepai) • [Technology](#-technology)
+## Tech Stack
 
-</div>
+### Backend
+- Django 5.0
+- Django REST Framework
+- Clerk JWT Authentication
+- OpenAI API for AI question generation
+- SQLite (production-ready for PostgreSQL)
 
----
+### Frontend
+- Next.js 14 with App Router
+- TypeScript
+- Tailwind CSS
+- Framer Motion for animations
+- Lucide React icons
+- Axios for API calls
+- Clerk for authentication
 
-## 📖 About PrepAI
-
-PrepAI is an intelligent interview preparation platform that uses cutting-edge artificial intelligence to transform how candidates prepare for interviews. Whether you're a student preparing for your first technical interview or an experienced professional looking to switch careers, PrepAI provides personalized, realistic interview practice with instant AI feedback.
-
-### 🎯 Our Mission
-
-To democratize interview preparation by making high-quality, AI-powered interview practice accessible to everyone. We believe that with the right tools and practice, anyone can ace their dream job interview.
-
-### 👥 Who is PrepAI For?
-
-#### 🎓 For Students & Job Seekers
-- **Fresh Graduates**: Practice entry-level interviews with confidence
-- **Career Switchers**: Prepare for interviews in new domains
-- **Experienced Professionals**: Sharpen skills for senior positions
-- **Remote Job Seekers**: Practice for virtual interview formats
-
-#### 👔 For Interviewers & Recruiters
-- **HR Professionals**: Screen candidates efficiently at scale
-- **Technical Interviewers**: Assess coding and technical skills
-- **Hiring Managers**: Make data-driven hiring decisions
-- **Startup Founders**: Quickly evaluate multiple candidates
-
----
-
-## ✨ Key Features
-
-### 🤖 AI-Powered Question Generation
-
-PrepAI uses advanced language models to generate 15 personalized interview questions tailored to your specific needs:
-
-- **📋 Job-Specific Questions**: Questions designed for your target role
-- **💻 Skill-Based**: Focused on your technology stack and expertise
-- **📊 Difficulty Levels**: Choose from beginner, intermediate, or advanced
-- **📄 Resume Integration**: Upload your PDF for questions based on your actual experience
-- **🔄 Dynamic Generation**: Each interview gets unique, fresh questions
-
-### ⚡ Real-Time AI Feedback
-
-Get instant, detailed feedback on every answer you submit:
-
-- **🏆 Scoring System**: Each answer scored 1-10 with detailed breakdown
-- **💬 Detailed Feedback**: Understand exactly what you did well
-- **🎯 Improvement Strategies**: Actionable advice to boost your performance
-- **❓ Follow-Up Questions**: AI probes deeper when answers need more detail
-- **📈 Progress Tracking**: See your improvement over time
-
-### 📊 Performance Dashboard
-
-Monitor your interview preparation journey with comprehensive analytics:
-
-- **📈 Statistics Dashboard**: View scores, completion rates, and trends
-- **🔍 Search & Filter**: Find specific interviews quickly
-- **📅 Interview History**: Track all your past attempts
-- **🎯 Skill Analysis**: Identify strengths and areas for improvement
-- **📊 Progress Reports**: Visual charts showing your growth
-
-### 🔗 Shareable Interview Links
-
-For interviewers and recruiters:
-
-- **🌐 Public Links**: Create shareable interview URLs for candidates
-- **⚙️ Custom Templates**: Define role, experience, and requirements
-- **🔑 Link Management**: Regenerate tokens, set expiry dates
-- **📊 Candidate Analytics**: Track attempts and completion rates
-- **👥 Multi-Candidate**: Screen hundreds of candidates simultaneously
-
-### 🎨 Modern User Experience
-
-Beautiful, intuitive interface designed for optimal learning:
-
-- **📱 Mobile-First Design**: Practice anywhere, on any device
-- **🎭 Smooth Animations**: Engaging transitions and interactions
-- **♿ Accessible**: WCAG compliant design for all users
-- **🌙 Dark Mode Ready**: Eye-friendly interface for long sessions
-- **⚡ Fast Performance**: Instant loading and responsive interactions
-
----
-
-## 🚀 How It Works
-
-### 🎓 For Candidates
+## Project Structure
 
 ```
-┌─────────────┐    ┌──────────────┐    ┌─────────────┐    ┌─────────────┐
-│   Sign Up   │ -> │ Create Interview│ -> │ Answer Questions│ -> │ Get Feedback │
-└─────────────┘    └──────────────┘    └─────────────┘    └─────────────┘
-       ↓                  ↓                    ↓                    ↓
-┌─────────────┐    ┌──────────────┐    ┌─────────────┐    ┌─────────────┐
-│ Choose Role │    │ AI Generates  │    │ Instant AI   │    │ Improve &   │
-│ & Skills    │    │ 15 Questions  │    │ Evaluation  │    │ Reattempt    │
-└─────────────┘    └──────────────┘    └─────────────┘    └─────────────┘
+AI MOCK INTERVIEW/
+├── backend/
+│   ├── config/          # Django settings and URLs
+│   ├── accounts/        # User authentication and profiles
+│   ├── interviews/      # Interview management
+│   ├── manage.py
+│   └── requirements.txt
+└── frontend/
+    ├── app/            # Next.js app directory
+    │   ├── sign-in/    # Clerk sign-in page
+    │   └── sign-up/    # Clerk sign-up page
+    ├── components/     # Reusable UI components
+    ├── lib/           # Utilities and API client
+    └── package.json
 ```
 
-**Step 1: Sign Up** 📝
-- Create your account with secure authentication
-- Complete your profile with skills and interests
-- Choose your target job roles
+## Getting Started
 
-**Step 2: Create Interview** 🎯
-- Select your target role (e.g., Senior Software Engineer)
-- Choose difficulty level (beginner/intermediate/advanced)
-- Enter job description or upload resume
-- Select relevant skills and technologies
+### Prerequisites
 
-**Step 3: Answer Questions** 💬
-- Respond to 15 AI-generated interview questions
-- Take your time - no rush, no pressure
-- Get real-time hints if needed
-- Practice at your own pace
+- Python 3.10+
+- Node.js 18+
+- OpenAI API Key
+- Clerk Account (for authentication)
 
-**Step 4: Get Feedback** 📊
-- Receive instant AI evaluation with scores
-- Read detailed feedback on each answer
-- View improvement strategies
-- Understand your strengths and gaps
+### Clerk Setup
 
-**Step 5: Improve & Reattempt** 🔄
-- Review your performance
-- Reattempt interviews to improve scores
-- Track your progress over time
-- Prepare confidently for real interviews
+1. Create a Clerk account at [clerk.com](https://clerk.com)
+2. Create a new application
+3. Copy your API keys from the Clerk dashboard
+4. Add the keys to your `.env.local` file
 
-### 👔 For Interviewers
+### Backend Setup
 
-```
-┌─────────────┐    ┌──────────────┐    ┌─────────────┐    ┌─────────────┐
-│  Sign Up    │ -> │ Create Link  │ -> │ Share with  │ -> │ Track Results│
-│  as Recruiter│    │  & Template  │ -> │ Candidates  │ -> │ & Analytics  │
-└─────────────┘    └──────────────┘    └─────────────┘    └─────────────┘
+1. Navigate to backend directory:
+```bash
+cd backend
 ```
 
-**Step 1: Sign Up** 📝
-- Create your interviewer account
-- Set up your organization profile
-- Configure interview preferences
-
-**Step 2: Create Link** 🔗
-- Define role and experience level
-- Set job description and requirements
-- Choose difficulty and question count
-- Generate shareable link
-
-**Step 3: Share with Candidates** 📤
-- Send link to candidates via email or messaging
-- Candidates can access anytime, anywhere
-- No scheduling required
-- Automatic tracking of attempts
-
-**Step 4: Track Results** 📊
-- Monitor candidate attempts in real-time
-- View completion rates and scores
-- Analyze performance metrics
-- Compare candidates side-by-side
-
----
-
-## 💡 Why PrepAI?
-
-### 🎓 For Students
-
-#### ✅ Realistic Practice
-- Experience actual interview scenarios before the real thing
-- Practice with questions similar to what you'll face
-- Build confidence through repetition
-- Reduce interview anxiety through preparation
-
-#### ✅ Instant Feedback
-- Learn from your mistakes immediately
-- Don't wait days for feedback
-- Understand exactly what to improve
-- Get actionable advice you can apply right away
-
-#### ✅ Personalized Learning
-- Questions tailored to your skills and goals
-- Focus on areas where you need improvement
-- Practice at your own difficulty level
-- Reattempt until you master each topic
-
-#### ✅ Track Progress
-- See measurable improvement over time
-- Identify patterns in your performance
-- Celebrate your wins and milestones
-- Stay motivated with visual progress tracking
-
-#### ✅ Flexible & Convenient
-- Practice anytime, anywhere
-- No scheduling with interviewers
-- Practice at your own pace
-- Reattempt as many times as you want
-
-### 👔 For Interviewers
-
-#### ✅ Efficient Screening
-- Screen hundreds of candidates simultaneously
-- No need for initial phone screens
-- Focus time on top performers
-- Reduce hiring cycle time significantly
-
-#### ✅ Consistent Evaluation
-- All candidates get the same fair assessment
-- Eliminate interviewer bias
-- Standardized scoring system
-- Objective performance metrics
-
-#### ✅ Data-Driven Decisions
-- Make hiring decisions based on actual performance
-- Compare candidates quantitatively
-- Identify top performers quickly
-- Reduce bad hires
-
-#### ✅ Time-Saving
-- Automate initial screening process
-- Focus on final interviews only
-- Reduce scheduling overhead
-- Scale hiring without adding headcount
-
-#### ✅ Scalable Solution
-- Screen unlimited candidates
-- Handle multiple roles simultaneously
-- Grow with your hiring needs
-- Cost-effective compared to manual screening
-
----
-
-## 🎨 Use Cases
-
-### 🎓 Use Case 1: Fresh Graduate Preparation
-
-**Scenario:** Sarah, a recent computer science graduate, is preparing for her first technical interviews at top tech companies.
-
-**How PrepAI Helps:**
-- Practices with beginner-level questions
-- Gets feedback on fundamental concepts
-- Builds confidence before real interviews
-- Tracks improvement over multiple attempts
-- Lands her dream job at a tech giant
-
-### 👔 Use Case 2: Company Hiring
-
-**Scenario:** A fast-growing startup needs to hire 10 software engineers quickly.
-
-**How PrepAI Helps:**
-- Creates shareable interview links
-- Screens 200+ candidates in parallel
-- Identifies top 20 candidates for final rounds
-- Reduces hiring time from weeks to days
-- Makes data-driven hiring decisions
-
-### 🔄 Use Case 3: Career Switching
-
-**Scenario:** Michael, a web developer, wants to transition to machine learning engineering.
-
-**How PrepAI Helps:**
-- Practices ML-specific interview questions
-- Gets feedback on ML concepts
-- Identifies knowledge gaps
-- Focuses learning on weak areas
-- Successfully transitions to ML role
-
-### 📊 Use Case 4: Skill Assessment
-
-**Scenario:** A company wants to assess current employees' skills for promotion.
-
-**How PrepAI Helps:**
-- Creates role-specific interview templates
-- Employees practice and get scored
-- Management sees performance data
-- Makes promotion decisions based on merit
-- Identifies training needs
-
----
-
-## 🛠️ Technology
-
-### 🎯 Core Technologies
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Frontend Layer                        │
-├─────────────────────────────────────────────────────────┤
-│  Next.js 14  │  TypeScript  │  Tailwind CSS  │  Clerk   │
-│  App Router  │  Type Safety   │  Styling       │  Auth    │
-└─────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────┐
-│                   Backend Layer                         │
-├─────────────────────────────────────────────────────────┤
-│  Django 5.0  │  DRF  │  PostgreSQL  │  AI Worker     │
-│  REST API    │  API  │  Neon Cloud   │  Llama-8b      │
-└─────────────────────────────────────────────────────────┘
+2. Create virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### 🚀 Key Features
-
-- **🤖 AI-Powered**: Advanced language models for intelligent question generation
-- **☁️ Cloud Database**: Neon Postgres for reliable, scalable data storage
-- **🔐 Secure Authentication**: Clerk for secure user management and JWT tokens
-- **🎨 Modern UI**: Beautiful, responsive design with smooth animations
-- **⚡ Performance Optimized**: Fast loading times and instant feedback
-- **📱 Mobile-First**: Works perfectly on all devices
-- **♿ Accessible**: WCAG compliant for all users
-- **🔄 Real-Time Updates**: Instant feedback and live scoring
-
----
-
-## 🎯 Benefits
-
-### 🎓 For Students
-
-| Benefit | Description |
-|---------|-------------|
-| 🎯 **Targeted Practice** | Questions tailored to your dream job |
-| ⚡ **Instant Feedback** | Learn and improve immediately |
-| 📊 **Track Progress** | See your growth over time |
-| 💪 **Build Confidence** | Practice until you're interview-ready |
-| 🆓 **Free to Practice** | Reattempt interviews unlimited times |
-| 📱 **Anytime, Anywhere** | Practice on your schedule |
-| 🎓 **Learn from Mistakes** | Detailed feedback on every answer |
-| 🏆 **Competitive Edge** | Stand out from other candidates |
-
-### 👔 For Interviewers
-
-| Benefit | Description |
-|---------|-------------|
-| ⚡ **Efficient Screening** | Screen hundreds of candidates quickly |
-| 🎯 **Consistent Evaluation** | Fair assessment for everyone |
-| 📊 **Data-Driven** | Make decisions based on performance |
-| 💰 **Cost-Effective** | Reduce hiring costs significantly |
-| 🔄 **Scalable** | Handle unlimited candidates |
-| 📈 **Analytics** | Detailed performance metrics |
-| ⏰ **Time-Saving** | Focus on top performers only |
-| 🎯 **Quality Hires** | Identify the best candidates |
-
----
-
-## 🔒 Privacy & Security
-
-### 🛡️ Security Features
-
-- **🔐 Secure Authentication**: All accounts protected with industry-standard authentication
-- **🔒 Encrypted Data**: All data encrypted at rest and in transit
-- **👤 User Privacy**: Your interview data is yours alone
-- **🚫 No Data Sharing**: We never share your data with third parties
-- **📜 GDPR Compliant**: Follows data protection regulations
-- **🔑 Secure Connections**: All data transmitted over HTTPS
-- **👁️ Access Control**: Only you can access your interviews
-
-### 📋 Data Privacy
-
-- Your interview responses are stored securely
-- Only you can view your interview data
-- We don't sell or share your information
-- You can delete your data anytime
-- We comply with data protection laws
-
----
-
-## 📞 Support
-
-### 🤝 Getting Help
-
-Need assistance? We're here to help!
-
-- **📧 Email Support**: support@prepai.com
-- **💬 Community Forum**: Join our community for tips and discussions
-- **📖 Documentation**: Comprehensive guides and tutorials
-- **🎥 Video Tutorials**: Step-by-step walkthroughs
-- **🐛 Bug Reports**: Report issues on GitHub
-
-### 📚 Resources
-
-- **📖 User Guide**: Detailed documentation for all features
-- **🎓 Best Practices**: Tips for effective interview preparation
-- **💡 Success Stories**: Learn from others who landed their dream jobs
-- **🔧 Troubleshooting**: Common issues and solutions
-- **📊 Analytics Guide**: Understanding your performance data
-
----
-
-## 🎉 Success Stories
-
-### 🎓 Student Success
-
-*"PrepAI helped me land my dream job at Google! The AI feedback was incredibly detailed and helped me identify gaps I didn't even know I had. I practiced for 2 weeks and went from nervous to confident."* - Sarah K., Software Engineer
-
-### 👔 Company Success
-
-*"We reduced our hiring time by 60% using PrepAI. Instead of spending hours on initial phone screens, we now focus on the best candidates identified by the platform. It's been a game-changer for our recruiting process."* - Michael R., CTO
-
-### 🔄 Career Switch Success
-
-*"I was a web developer wanting to switch to ML engineering. PrepAI helped me practice ML-specific questions and get feedback on my understanding. 3 months later, I landed my dream ML engineer role!" - David L., ML Engineer
-
----
-
-## 🚀 Getting Started
-
-### 🎓 For Students
-
-1. **📝 Sign Up**: Create your free account
-2. **🎯 Choose Role**: Select your target job and skills
-3. **📊 Set Difficulty**: Choose beginner, intermediate, or advanced
-4. **💬 Practice**: Answer AI-generated interview questions
-5. **📈 Improve**: Review feedback and reattempt to boost scores
-
-### 👔 For Interviewers
-
-1. **📝 Sign Up**: Create your interviewer account
-2. **🔗 Create Link**: Define role and generate shareable link
-3. **📤 Share**: Send link to candidates
-4. **📊 Track**: Monitor candidate progress and scores
-5. **🎯 Hire**: Focus on top performers
-
----
-
-## 🏆 What Makes PrepAI Different?
-
-### 🎯 Unlike Other Platforms
-
-| Feature | PrepAI | Others |
-|---------|--------|--------|
-| 🤖 AI-Powered Questions | ✅ | ❌ |
-| ⚡ Instant Feedback | ✅ | ❌ |
-| 📊 Detailed Analytics | ✅ | ❌|
-| 🔗 Shareable Links | ✅ | ❌ |
-| 📱 Mobile-First | ✅ | ❌ |
-| ♿ Accessible | ✅ | ❌ |
-| 🎨 Beautiful UI | ✅ | ❌ |
-| ⚡ Fast Performance | ✅ | ❌ |
-
-### 🌟 Unique Advantages
-
-- **🎯 Personalized**: Every interview is tailored to you
-- **⚡ Instant**: Get feedback immediately, not days later
-- **📊 Data-Driven**: Make decisions based on performance
-- **🔗 Shareable**: Screen candidates at scale
-- **📱 Accessible**: Practice anywhere, anytime
-- **♿ Inclusive**: Designed for everyone
-- **🎨 Beautiful**: Enjoy the learning experience
-- **⚡ Fast**: No waiting, instant results
-
----
-
-## 🎯 Roadmap
-
-### 🚀 Coming Soon
-
-- **🎥 Video Interviews**: Practice with video recording
-- **🌍 Multi-Language**: Support for interviews in multiple languages
-- **👥 Team Features**: Collaborative interviewing for teams
-- **📊 Advanced Analytics**: More detailed performance insights
-- **🎯 Industry-Specific**: Specialized questions for different industries
-- **📱 Mobile App**: Native iOS and Android apps
-- **🤝 Peer Practice**: Practice with other users
-- **🎓 Learning Paths**: Structured learning courses
-
----
-
-## 📊 Statistics
-
-### 🎯 Platform Impact
-
-- **👥 Users**: 10,000+ active users
-- **📝 Interviews**: 50,000+ interviews completed
-- **💬 Questions**: 750,000+ AI-generated questions
-- **🎯 Success Rate**: 85% of users report improved interview performance
-- **⏰ Time Saved**: Users save an average of 20 hours per interview preparation
-
-### 🏆 Success Metrics
-
-- **🎓 Job Offers**: Users report 40% higher interview-to-offer conversion
-- **👔 Hiring Efficiency**: Companies report 60% reduction in screening time
-- **📊 Satisfaction**: 95% user satisfaction rate
-- **🔄 Retention**: 80% of users continue using PrepAI regularly
-
----
-
-## 🎉 Join PrepAI Today
-
-### 🚀 Start Your Journey
-
-Whether you're preparing for your dream job or looking to streamline your hiring process, PrepAI is here to help.
-
-**For Students:**
-- Sign up for free
-- Start practicing immediately
-- Land your dream job
-
-**For Interviewers:**
-- Create your account
-- Start screening candidates
-- Hire the best talent
-
-### 📧 Contact Us
-
-- **📧 Email**: hello@prepai.com
-- **💬 Twitter**: @PrepAI
-- **💼 LinkedIn**: PrepAI
-- **🌐 Website**: www.prepai.com
-
----
-
-<div align="center">
-
-**PrepAI** - Practice Perfect, Interview Confidently. 🚀
-
-Made with ❤️ by the PrepAI Team
-
-[⬆ Back to Top](#-prepai---ai-mock-interview-platform)
-
-</div>
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Set up environment variables:
+```bash
+cp .env.example .env
+# Edit .env and add your OPENAI_API_KEY and Clerk keys
+```
+
+5. Run migrations:
+```bash
+python manage.py migrate
+```
+
+6. Start development server:
+```bash
+python manage.py runserver
+```
+
+Backend will be available at `http://localhost:8000`
+
+### Frontend Setup
+
+1. Navigate to frontend directory:
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+```bash
+cp .env.local.example .env.local
+# Edit .env.local and add your Clerk keys
+```
+
+4. Start development server:
+```bash
+npm run dev
+```
+
+Frontend will be available at `http://localhost:3000`
+
+## API Endpoints
+
+### Authentication
+- Clerk handles authentication automatically
+- JWT tokens are validated on the backend
+
+### Interviews
+- `GET /api/interviews/` - List all interviews
+- `POST /api/interviews/` - Create new interview
+- `GET /api/interviews/{id}/` - Get interview details
+- `GET /api/interviews/{id}/questions/` - Get interview questions
+- `POST /api/interviews/questions/{id}/answer/` - Submit answer
+- `POST /api/interviews/{id}/complete/` - Complete interview
+
+## Environment Variables
+
+### Backend (.env)
+```
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+OPENAI_API_KEY=your-openai-api-key-here
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+CLERK_SECRET_KEY=your-clerk-secret-key
+CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+```
+
+### Frontend (.env.local)
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000/api
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+CLERK_SECRET_KEY=your-clerk-secret-key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+```
+
+## Development
+
+### Running Tests
+```bash
+# Backend
+cd backend
+python manage.py test
+
+# Frontend
+cd frontend
+npm test
+```
+
+### Building for Production
+
+#### Backend
+```bash
+cd backend
+python manage.py collectstatic
+```
+
+#### Frontend
+```bash
+cd frontend
+npm run build
+npm start
+```
+
+## Features to Implement
+
+- [x] Clerk authentication
+- [ ] Voice recording and playback
+- [ ] AI-powered answer evaluation
+- [ ] Detailed analytics dashboard
+- [ ] Interview history and replay
+- [ ] Multiple interview templates
+- [ ] Real-time transcription
+- [ ] Dark mode toggle
+- [ ] Mobile responsive design
+
+## License
+
+MIT
