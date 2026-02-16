@@ -13,19 +13,26 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.onrender.com,.vercel.app').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,ai-mock-interview-3sqn.onrender.com,ai-mock-interview-lokesh.vercel.app').split(',')
 
 CORS_ALLOWED_ORIGINS = [
-    origin.strip() for origin in os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000').split(',') if origin.strip()
+    'https://ai-mock-interview-lokesh.vercel.app',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
 ]
 
-# In production, if CORS_ALLOWED_ORIGINS is not properly set, allow all for debugging
-if not DEBUG and not os.getenv('CORS_ALLOWED_ORIGINS'):
-    CORS_ALLOW_ALL_ORIGINS = True
-else:
-    CORS_ALLOW_ALL_ORIGINS = DEBUG
+# Add any origins from environment variables
+env_origins = os.getenv('CORS_ALLOWED_ORIGINS')
+if env_origins:
+    CORS_ALLOWED_ORIGINS.extend([o.strip() for o in env_origins.split(',') if o.strip()])
 
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Only allow all in debug mode
 CORS_ALLOW_CREDENTIALS = True
+
+# Add CSRF trusted origins for the health check and API
+CSRF_TRUSTED_ORIGINS = [
+    'https://ai-mock-interview-lokesh.vercel.app',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
