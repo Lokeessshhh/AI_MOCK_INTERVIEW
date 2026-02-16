@@ -7,8 +7,12 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware((auth, request) => {
-  if (!isPublicRoute(request)) {
-    auth().protect();
+  try {
+    if (!isPublicRoute(request)) {
+      auth().protect();
+    }
+  } catch (error) {
+    console.error('Middleware error:', error);
   }
 });
 
