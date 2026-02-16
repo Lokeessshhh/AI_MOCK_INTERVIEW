@@ -20,6 +20,9 @@ wheels/
 .installed.cfg
 *.egg
 
+!lib/
+!lib/**
+
 # Virtual Environment
 .venv/
 venv/
