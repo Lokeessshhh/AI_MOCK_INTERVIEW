@@ -30,15 +30,32 @@ const FloatingElement = ({ children, delay = 0, className = "" }: { children: Re
 export default function Home() {
   const { isSignedIn } = useUser();
   const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
-    // Wake up backend on page load
-    healthAPI.check().then((isOnline) => {
-      setBackendStatus(isOnline ? 'online' : 'offline');
-    });
-  }, []);
+    let isMounted = true;
+    const check = async () => {
+      setBackendStatus('checking');
+      const isOnline = await healthAPI.check();
+      if (isMounted) {
+        if (isOnline) {
+          setBackendStatus('online');
+        } else if (retryCount < 2) {
+          // If offline, retry after 5 seconds to give Render more time to wake up
+          setTimeout(() => {
+            if (isMounted) setRetryCount(prev => prev + 1);
+          }, 5000);
+        } else {
+          setBackendStatus('offline');
+        }
+      }
+    };
+    check();
+    return () => { isMounted = false; };
+  }, [retryCount]);
 
   const checkBackend = () => {
+    setRetryCount(0);
     setBackendStatus('checking');
     healthAPI.check().then((isOnline) => {
       setBackendStatus(isOnline ? 'online' : 'offline');
