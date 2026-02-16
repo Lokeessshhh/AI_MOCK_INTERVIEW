@@ -42,6 +42,7 @@ export const healthAPI = {
     try {
       const res = await fetch(`${API_URL.replace('/api', '')}/health/`, {
         method: 'GET',
+        cache: 'no-cache',
       });
       return res.ok;
     } catch {

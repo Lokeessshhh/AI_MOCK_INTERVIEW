@@ -38,6 +38,13 @@ export default function Home() {
     });
   }, []);
 
+  const checkBackend = () => {
+    setBackendStatus('checking');
+    healthAPI.check().then((isOnline) => {
+      setBackendStatus(isOnline ? 'online' : 'offline');
+    });
+  };
+
   const fadeIn = {
     hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
@@ -68,18 +75,22 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
             {/* Backend Status Indicator */}
-            <div className="flex items-center gap-2 text-[10px] font-medium">
-              <div className={`w-2 h-2 rounded-full ${
-                backendStatus === 'online' ? 'bg-emerald-500' :
-                backendStatus === 'offline' ? 'bg-rose-500' :
+            <button
+              onClick={checkBackend}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 hover:border-blue-600 transition-colors bg-white/50 backdrop-blur-sm"
+              title="Click to check backend status"
+            >
+              <div className={`w-2.5 h-2.5 rounded-full ${
+                backendStatus === 'online' ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50' :
+                backendStatus === 'offline' ? 'bg-rose-500 shadow-sm shadow-rose-500/50' :
                 'bg-amber-500 animate-pulse'
               }`} />
-              <span className="text-slate-400">
+              <span className="text-[10px] font-medium text-slate-600">
                 {backendStatus === 'online' ? 'Backend Online' :
                  backendStatus === 'offline' ? 'Backend Offline' :
                  'Waking...'}
               </span>
-            </div>
+            </button>
 
             {!isSignedIn ? (
               <>
