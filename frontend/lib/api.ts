@@ -84,6 +84,11 @@ export const interviewAPI = {
       method: 'POST',
     }),
 
+  end: (interviewId: number | string) =>
+    apiFetch(`/interviews/interviews/${interviewId}/complete/`, {
+      method: 'POST',
+    }),
+
   results: (interviewId: number | string) =>
     apiFetch(`/interviews/interviews/${interviewId}/results/`),
 
