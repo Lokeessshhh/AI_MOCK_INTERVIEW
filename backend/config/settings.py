@@ -13,7 +13,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,ai-mock-interview-3sqn.onrender.com,ai-mock-interview-1u7n.onrender.com,ai-mock-interview-lokesh.vercel.app').split(',')
+ALLOWED_HOSTS = os.getenv(
+    'ALLOWED_HOSTS',
+    'localhost,127.0.0.1,.onrender.com,ai-mock-interview-lokesh.vercel.app'
+).split(',')
 
 CORS_ALLOWED_ORIGINS = [
     'https://ai-mock-interview-lokesh.vercel.app',
