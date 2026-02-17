@@ -13,11 +13,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,ai-mock-interview-3sqn.onrender.com,ai-mock-interview-lokesh.vercel.app').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,ai-mock-interview-3sqn.onrender.com,ai-mock-interview-1u7n.onrender.com,ai-mock-interview-lokesh.vercel.app').split(',')
 
 CORS_ALLOWED_ORIGINS = [
     'https://ai-mock-interview-lokesh.vercel.app',
     'http://localhost:3000',
+    'http://localhost:3001',
     'http://127.0.0.1:3000',
 ]
 
@@ -28,6 +29,18 @@ if env_origins:
 
 CORS_ALLOW_ALL_ORIGINS = DEBUG  # Only allow all in debug mode
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'x-clerk-auth-token',
+]
 
 # Add CSRF trusted origins for the health check and API
 CSRF_TRUSTED_ORIGINS = [
@@ -154,9 +167,5 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
 }
-
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000').split(',')
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = ['content-type', 'authorization', 'x-requested-with']
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
