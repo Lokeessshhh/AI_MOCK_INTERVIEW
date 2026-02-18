@@ -392,6 +392,7 @@ export default function InterviewSessionPage() {
 
       const ready = Array.isArray(data.questions) && data.questions.length > 0;
       if (ready) {
+        setLoadingError('');
         if (!permissionPopupShownRef.current && !isInitialized) {
           setShowPermissionPopup(true);
           permissionPopupShownRef.current = true;
@@ -403,6 +404,7 @@ export default function InterviewSessionPage() {
             const pollReady = Array.isArray(pollData.questions) && pollData.questions.length > 0;
             if (pollReady) {
               if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+              setLoadingError('');
               if (!permissionPopupShownRef.current && !isInitialized) {
                 setShowPermissionPopup(true);
                 permissionPopupShownRef.current = true;
@@ -970,7 +972,7 @@ return (
     </header>
 
     <AnimatePresence>
-      {(isGeneratingQuestions || !!loadingError) && (
+      {(isGeneratingQuestions || !!loadingError) && !integrityGateOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
