@@ -908,7 +908,7 @@ export default function InterviewSessionPage() {
     }
     try {
       await interviewAPI.end(interviewId);
-      router.push(`/interviews/${interviewId}/result`);
+      router.push(`/interviews/${interviewId}/results`);
     } catch (error) {
       console.error('Error ending interview:', error);
       router.push('/dashboard');
